@@ -140,3 +140,45 @@ A **Use Case Diagram** is a visual representation of interactions between **acto
 6. `Generate Reports` (Admin)  
 
 > **Note**: The diagram was created using [Draw.io](https://app.diagrams.net/) and exported as `alx-booking-uc.png`.  
+
+## Acceptance Criteria
+
+### Importance in Requirement Analysis
+Acceptance Criteria (AC) are **conditions** that a feature must satisfy to be accepted by stakeholders. They serve as:
+- **Quality Gate**: Define "done" for development teams.
+- **Alignment Tool**: Ensure developers, testers, and stakeholders share the same expectations.
+- **Test Basis**: Guide the creation of test cases.
+- **Scope Control**: Prevent feature creep by setting clear boundaries.
+
+### Example: Checkout Feature in Booking System
+**Feature**: *As a customer, I want to complete payment during checkout so I can confirm my booking.*
+
+**Acceptance Criteria**:
+1. **Payment Validation**:
+   - ✅ System shall reject invalid card numbers (e.g., <16 digits for Visa) with an error message.
+   - ✅ System shall accept valid card numbers (e.g., 16 digits for Visa, 15 for Amex).
+
+2. **Success Path**:
+   - ✅ Upon successful payment, the system shall:
+     - Generate a booking confirmation number.
+     - Send an email with booking details to the customer.
+     - Update the database with a "Confirmed" status.
+
+3. **Failure Handling**:
+   - ✅ If payment fails (e.g., insufficient funds), the system shall:
+     - Retain the booking in "Pending" status.
+     - Display a user-friendly error message with retry options.
+
+4. **UI/UX**:
+   - ✅ Checkout page shall load within 3 seconds.
+   - ✅ All form fields (card, CVV, expiry) shall have client-side validation.
+
+5. **Edge Cases**:
+   - ✅ If the session expires during checkout, the system shall preserve entered data and prompt re-authentication.
+
+**Format Tip**: Use the **Given-When-Then** structure for clarity:
+```gherkin
+Given I have selected a booking slot  
+When I enter valid payment details  
+Then the system confirms my booking  
+And sends a confirmation email  
